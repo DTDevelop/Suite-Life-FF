@@ -2,40 +2,41 @@
 Character Class
 """
 
+import food_item_class
+
 class Character():
     """
     create a character object
     """
-    def __init__(self, x = 0, y = 0, health = 3, walk_speed = 3, throw_speed = 3):
+    def __init__(self, x = 0, y = 0, health = 3, walk_speed = 3, strength = 3):
         """
         initialize character
         """
         #general player attributes
         self._health = health
         self._walk_speed = walk_speed
-        self._throw_speed = throw_speed
+        self._strength = strength #vs food weight, result projectile speed
         self._player_hit = False
         self._x_place = x
         self._y_place = y
+        self._orientation = None #facing direction, sets upon key down
 
         #general food item attributes
-        self._food_num = None
+        self._food_item = None
         self._has_food = False
-        self._food_health = 0
-        return
 
     def __str__(self):
         """
         string representation
         """
-        health = 'Player has\n', self.get_health(), ' health\n'
-        walk = self.get_walk_speed(), ' walk speed\n'
-        throw = self.get_throw_speed(), 'throw speed\n'
-        location = 'located at: ', (self.get_x(), self.get_y())
+        health = 'Player has\n', self._health, ' health\n'
+        walk = self._walk_speed, ' walk speed\n'
+        strength = self.strength, ' strength\n'
+        location = 'located at: ', (self._x_place, self._y_place)
 
-        return str(health)+str(walk)+str(throw)+str(location)
+        return str(health)+str(walk)+str(strength)+str(location)
 
-#player methods
+#basic methods
     def get_health(self):
         """
         returns players current health
@@ -48,17 +49,24 @@ class Character():
         """
         return self._walk_speed
 
-    def get_throw_speed(self):
+    def get_strength(self):
         """
         returns players current throwing speed
         """
-        return get._throw_speed
+        return get.strength
 
     def player_hit(self):
         """
         returns T/F, if player has been hit
         """
         return self._player_hit
+
+    def deduct_health(self):
+        """
+        decrement health by 1
+        """
+        self._health -= 1
+
 
     def get_x(self):
         """
@@ -79,35 +87,77 @@ class Character():
         """
         return self._has_food
 
-    def gain_food(self, food_num, food_health):
+    def gain_food(self, food):
         """
         gives character food item
         """
         #parses item object & places values into player object to store
-        self._food_num = food_num
-        self._item_health = food_health
+        self._food_item = food
+        self._has_food = True
 
-    def throw_food(self):
+    def get_food(self):
         """
-        changes values upon throwing food
+        returns current food object in hand
         """
-        if has_food:
-            self.deduct_food()
+        return self._food_item
 
-    def deduct_food(self):
+    def set_orientation(self, direction):
         """
-        deduct food count
+        sets new orientation
         """
-        self._food_health -= 1
+        self._orientation = direction
 
-    def get_food_num(self):
+    def get_orientation(self):
         """
-        returns food number
+        gets orientation
         """
-        return self.food_num
+        return self._orientation
 
-    def get_food_count(self):
+#movement methods
+    def move_x(self, x):
         """
-        get food count of current item
+        changes x value coordinate
         """
-        return self._food_health
+        self._x_place += x
+
+    def move_y(self, y):
+        """
+        changes y value coordinate
+        """
+        self._y_place += y
+
+#projectile calculation
+    def projectile_speed(self):
+        """
+        returns speed of projectile
+        player strength vs food weight
+        """
+        projetile_speed = (self.get_food().get_weight())-self._strength
+        if projectile_speed < 0:
+            projectile_speed = 0
+        return projectile_speed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
