@@ -9,3 +9,7 @@
     Implement Food Item Class  
     Implement Impassable Terrain Classes (Map, Furniture)  
 
+2020-11-08 \ Danny Tran  
+    Update pip via Command Prompt
+    Install pygame 2.0 via Command Prompt
+    Create place-holder assets for visuals
