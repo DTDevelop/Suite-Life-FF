@@ -15,5 +15,5 @@
     Create place-holder assets for visuals  
     Get assets for character sprites  
     Get assets for map tiles & impassable terrain  
-    Get assets for 'Food Item' (Throwable weapons)  
+    Get assets for usable map items 
     
