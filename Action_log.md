@@ -13,3 +13,7 @@
     Update pip via Command Prompt  
     Install pygame 2.0 via Command Prompt  
     Create place-holder assets for visuals  
+    Get assets for character sprites  
+    Get assets for map tiles & impassable terrain  
+    Get assets for 'Food Item' (Throwable weapons)  
+    
