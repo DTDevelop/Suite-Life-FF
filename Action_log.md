@@ -18,6 +18,6 @@
     Get assets for usable map items 
     
 2020-11-11 \ Danny Tran  
-    Re-design for base game
+    Re-design for base game  
     re-make classes for desired game objects
     
