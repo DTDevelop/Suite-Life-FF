@@ -1,0 +1,10 @@
+###Character
+Assets\Knight_Character_Pack\knight_1.png
+Assets\Knight_Character_Pack\knight_3.png
+
+
+###Tiles
+
+###Weapons
+
+###Usable

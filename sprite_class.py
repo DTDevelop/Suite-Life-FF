@@ -64,9 +64,35 @@ class Character(Sprite):
         self._str = str
         self._player_hit = False #invulnerable period
         self._velocity = velocity
+
         #increments by fraction (self*accel) until cap velocity
         self._orientation = None #based on last keypress, pre-set from spawn
         super().__init__(x,y,img)
+
+    def walk_right(self):
+        """
+        increments x value
+        """
+        self._x_pos += 1
+
+
+    def walk_left(self):
+        """
+        decrements x value
+        """
+        self._x_pos -= 1
+
+    def walk_up(self):
+        """
+        decrements y value
+        """
+        self._y_pos -= 1
+
+    def walk_down(self):
+        """
+        increments y value
+        """
+        self._y_pos += 1
 
 class Tiles(Sprite):
     """
