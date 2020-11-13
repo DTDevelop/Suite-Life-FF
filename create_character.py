@@ -5,23 +5,49 @@ Using character class, creation of characters
 import pygame
 import sprite_class as spr
 
+#use example
+#create_characters(scale_char_imgs(load_assets("relative_directory.txt")))
+
 """
 load asset file(s)
 """
-def load_char_files():
+def load_assets(directories):
+    """
+    helper function for scale_char_imgs
+    reads directory txt file, gets desired char directories
+    returns list of wanted directories to load
+    """
+    char_directories = []
+    with open(directories) as f:
+        for line in f:
+            if "Assets\Knight_Character_Pack" in line:
+                char_directories.append(line.rstrip('\n')) #strips only \n
+    return char_directories
+
+#test output
+#print(load_assets("relative_directory.txt"))
+
+def scale_char_imgs(directories):
     """
     helper function for create_characters
     returns loaded/scaled character sheets
     """
-    knight_1 = pygame.image.load("Assets\Knight_Character_Pack\knight_1.png")
-    knight_2 = pygame.image.load("Assets\Knight_Character_Pack\knight_3.png")
+    knights = []
+    for directory in directories:
+        knights.append(pygame.image.load(directory))
+    # knight_1 = pygame.image.load("Assets\Knight_Character_Pack\knight_1.png")
+    # knight_2 = pygame.image.load("Assets\Knight_Character_Pack\knight_3.png")
 
-    CHR_WIDTH = characterImg.get_width() *2#width 8, height 5
-    CHR_HEIGHT = characterImg.get_height() *2
+    CHR_WIDTH = knights[0].get_width() *2#width 8, height 5
+    CHR_HEIGHT = knights[0].get_height() *2
+    for knight in knights:
+        pygame.transform.scale(knight,(CHR_WIDTH,CHR_HEIGHT))
+    # knight_1 = pygame.transform.scale(knight_1, (CHR_WIDTH,CHR_HEIGHT))
+    # knight_2 = pygame.transform.scale(knight_2, (CHR_WIDTH,CHR_HEIGHT))
+    return knights
 
-    knight_1 = pygame.transform.scale(characterImg, (CHR_WIDTH,CHR_HEIGHT))
-    knight_2 = pygame.transform.scale(characterImg, (CHR_WIDTH,CHR_HEIGHT))
-    return (knight_1, knight_2)
+#test output
+print(scale_char_imgs(load_assets("relative_directory.txt")))
 
 """
 function to create character objects
@@ -29,7 +55,7 @@ function to create character objects
 def create_characters(character_sheets):
     """
     create character objects
-    returns list of character objects
+    returns tuple of character objects
     """
     players = []
 
@@ -37,7 +63,6 @@ def create_characters(character_sheets):
         characters.append(spr.Character(30,3,1,DISPLAY_WIDTH/3,DISPLAY_HEIGHT/3,char))
 
     return players
-
 
 
 """
