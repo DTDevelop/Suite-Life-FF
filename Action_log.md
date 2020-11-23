@@ -1,4 +1,4 @@
--- General Aciton & Activity log --
+-- General Action & Activity log --
   
 2020-10-23 \ Danny Tran  
     Organize notes  
